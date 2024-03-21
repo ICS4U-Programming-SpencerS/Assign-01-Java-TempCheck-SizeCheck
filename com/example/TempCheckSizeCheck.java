@@ -24,29 +24,44 @@ public final class TempCheckSizeCheck {
      * @param args Unused
      */
 
-    public static float convertTemp(final float CelsiusFLT) {
+    public static float convertTempKel(final float CelsiusFLT) {
+        final float KelvinFLT = (float) (CelsiusFLT + 273.15);
+        return KelvinFLT;
+    }
+
+    public static float convertTempFah(final float CelsiusFLT) {
         // Fahrenheit calculation
         final float FahrenheitFLT = (float) ((CelsiusFLT * 1.8) + 32);
         return FahrenheitFLT;
     }
+
     public static void main(final String[] args) {
         final Scanner in = new Scanner(System.in);
-
-        System.out.println("Hello, this program accepts temperature in Celsius ");
-        System.out.print("but then converts it to Kelvin and Fahrenheit!: ");
-        final String CelsiusSTR = in.nextLine();
-
-        try {
-            final Float CelsiusFLT = Float.parseFloat(CelsiusSTR);
-            if (CelsiusFLT < -273.15) {
-                System.out.println("Inputted temperature can't go past -273.15 (absolute zero)");
-            } else {
-                float FahrenheitFLT = convertTemp(CelsiusFLT);
-                System.out.println(FahrenheitFLT);
+        boolean programState = true;
+        while (programState) {
+            System.out.println("Enter 1 to start or 0 to quit");
+            String programStateSTR = in.nextLine();
+            try {
+                Integer programStateINT = Integer.parseInt(programStateSTR);
+                if (programStateINT == 1) {
+                    System.out.print("Welcome to my program, enter the temperature in Celsius");
+                    System.out.println(" and it'll be converted into Kelvin and Fahrenheit!");
+                    final String CelsiusSTR = in.nextLine();
+                    try {
+                        Float CelsiusFLT = Float.parseFloat(CelsiusSTR);
+                        float KelvinFLT = convertTempKel(CelsiusFLT);
+                        float FahrenheitFLT = convertTempFah(CelsiusFLT);
+                        System.out.println(KelvinFLT + " " + FahrenheitFLT);
+                    } catch (NumberFormatException error){
+                        System.out.println("Bad input");
+                    }
+                    break;
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException error) {
+                System.out.println("Bad input, try again.");
             }
-        } catch(NumberFormatException error) {
-            System.out.println("Invalid input detected, program ending.");
         }
-
     }
 }
