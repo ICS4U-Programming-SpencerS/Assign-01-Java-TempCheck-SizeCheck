@@ -3,7 +3,7 @@
 import java.util.Scanner;
 
 /**
- * Assignment 1 Java 2 programs
+ * Assignment 1 Java 2 programs.
  *
  * @author Spencer Scarlett
  * @version 1.0
@@ -274,8 +274,13 @@ public final class TempCheckSizeCheck {
                 }
 
                 // this part is for restarting your code, only shows at the end of the program or if bad inputs
+
+                // this pushes away from code, making space to see final output.
+                for (int i = 0; i < 10; i++) {
+                System.out.println(" ");
+                }
                 System.out.println("Press enter to restart or Q to quit");
-                String restart = in.nextLine();
+                final String restart = in.nextLine();
 
                 // q = quit anything else is restart
                 if (restart.equalsIgnoreCase("q")) {
