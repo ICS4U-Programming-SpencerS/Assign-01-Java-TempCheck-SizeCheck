@@ -191,7 +191,7 @@ public final class TempCheckSizeCheck {
                                                             if (TampHeightFlt > 0) {
 
                                                                 // calls function
-                                                                Float roundTrapArea = shapeTrapezoid(TrapBaseAFlt,
+                                                                final Float roundTrapArea = shapeTrapezoid(TrapBaseAFlt,
                                                                         TrapBaseBFlt, TampHeightFlt);
 
                                                                 // output message
@@ -237,7 +237,7 @@ public final class TempCheckSizeCheck {
                                             final float sideLengthFLT = Float.parseFloat(sideLengthSTR);
                                             if (sideLengthFLT > 0) {
 
-                                                // calls function and output 
+                                                // calls function and output
                                                 Float roundedArea = shapePentagon(sideLengthFLT);
                                                 System.out.println("A pentagon with a side length of " + sideLengthFLT
                                                         + "cm will have an area of " + roundedArea + "cm");
