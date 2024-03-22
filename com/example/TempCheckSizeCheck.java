@@ -54,7 +54,7 @@ public final class TempCheckSizeCheck {
         final Scanner in = new Scanner(System.in);
         boolean programState = true;
         while (programState) {
-            System.out.println("Enter Y to start, anything else to quit");
+            System.out.println("Enter y to start, anything else to quit");
             String game = in.nextLine();
             if (game.equalsIgnoreCase("y")) {
                 System.out.println("Which program would you like to run? 1 = Temp calculator. 2 = Shape area calculator");
@@ -63,52 +63,62 @@ public final class TempCheckSizeCheck {
                     Integer programPickINT = Integer.parseInt(programPickSTR);
                     switch (programPickINT) {
                         case 1:
-                            System.out.println("Program 1 play");
-                            System.out.print("Welcome to my program, enter the temperature in Celsius");
-                            System.out.println(" and it'll be converted into Kelvin and Fahrenheit!");
+                            System.out.println("Welcome to my temperature converter.");
+                            System.out.print("Enter the temperature in °C");
+                            System.out.println(" and it'll be converted into K and °F!");
                             final String CelsiusSTR = in.nextLine();
                             try {
                                 Float CelsiusFLT = Float.parseFloat(CelsiusSTR);
-                                Float KelvinFLT = convertTempKel(CelsiusFLT);
-                                Float FahrenheitFLT = convertTempFah(CelsiusFLT);
-                                System.out.println(KelvinFLT + " " + FahrenheitFLT);
+                                if (CelsiusFLT <= -273.15) {
+                                    System.out.println("Input can't be -273.15 °C (absolute zero)");
+                                } else {
+                                    Float KelvinFLT = convertTempKel(CelsiusFLT);
+                                    Float FahrenheitFLT = convertTempFah(CelsiusFLT);
+                                    System.out.println(
+                                            CelsiusFLT + "°C would be " + KelvinFLT + "K and " + FahrenheitFLT + "°F");
+                                }
                             } catch (NumberFormatException error) {
-                                System.out.println("Bad input");
+                                System.out.println("Invalid temperature inputted, value must be a number.");
                             }
                             break;
                         case 2:
-                            System.out.println("Program 2 play");
                             System.out.println("Welcome to my shape area calculator");
                             System.out.println("Enter which shape you would use to calculate");
-                            System.out.println("1 = Triangle, 2 = trapezoid, 3 = pentagon");
+                            System.out.println("1 = triangle, 2 = trapezoid, 3 = pentagon");
                             final String shapePickSTR = in.nextLine();
                             try {
                                 final Integer shapePickInt = Integer.parseInt(shapePickSTR);
                                 switch (shapePickInt) {
                                     case 1:
-                                        System.out.println("Enter the base of triangle");
+                                        System.out.println("Enter the base of triangle(in cm)");
                                         final String TriBaseSTR = in.nextLine();
                                         try {
                                             final Float TriBaseFLT = Float.parseFloat(TriBaseSTR);
                                             if (TriBaseFLT > 0) {
-                                                System.out.println("Enter the height of the triangle");
+                                                System.out.println("Enter the height of the triangle(in cm)");
                                                 final String TriHeightSTR = in.nextLine();
                                                 try {
                                                     final Float TriHeightFLT = Float.parseFloat(TriHeightSTR);
                                                     if (TriHeightFLT > 0) {
                                                         //TriAreaFLT
                                                         Float TriAreaFLT = shapeTriangle(TriBaseFLT, TriHeightFLT);
-                                                        System.out.println(TriAreaFLT);
+                                                        System.out.print(
+                                                                "The area of a triangle with a base of " + TriBaseFLT);
+                                                        System.out
+                                                                .print("cm and a height of " + TriHeightSTR + "cm is ");
+                                                        System.out.println(TriAreaFLT+ "cm");
+                                                    } else {
+                                                        System.out.println("Height must be greater than 0!");
                                                     }
                                                 } catch (NumberFormatException Error) {
-                                                    System.out.println("Bad input base");
+                                                    System.out.println("Invalid height inputted, value must be > 0");
                                                     break;
                                                 }
                                             } else {
-                                                System.out.println("Bad input");
+                                                System.out.println("Base must be greater than 0!");
                                             }
                                         } catch (NumberFormatException Error) {
-                                            System.out.println("Bad input case 1 try catch");
+                                            System.out.println("Invalid base inputted, value must be > 0");
                                         }
                                         break;
                                     case 2:
@@ -127,27 +137,28 @@ public final class TempCheckSizeCheck {
                                                         try {
                                                             final Float TampHeightFlt = Float.parseFloat(TampHeightStr);
                                                             if (TampHeightFlt > 0) {
-                                                                Float TrapAreaFLT = shapeTrapezoid(TrapBaseAFlt,TrapBaseBFlt, TampHeightFlt);
+                                                                Float TrapAreaFLT = shapeTrapezoid(TrapBaseAFlt,
+                                                                        TrapBaseBFlt, TampHeightFlt);
                                                                 System.out.println(TrapAreaFLT);
                                                             } else {
-                                                                System.out.println("Invalid height inputted!");
+                                                                System.out.println("Invalid height, height must be > 0");
                                                             }
-                                                            
+
                                                         } catch (NumberFormatException Error) {
-                                                            System.out.println("Bad input height flt");
+                                                            System.out.println("Height needs to greater than 0!");
                                                         }
                                                     } else {
-                                                        System.out.println("Bad input base B");
+                                                        System.out.println("Base B must be greater than 0");
                                                     }
                                                 } catch (NumberFormatException Error) {
-                                                    System.out.println("Bad input base A");
+                                                    System.out.println("Base B needs to be greater than 0!");
                                                     break;
                                                 }
                                             } else {
-                                                System.out.println("Bad input");
+                                                System.out.println("Base A must be greater than 0");
                                             }
                                         } catch (NumberFormatException Error) {
-                                            System.out.println("Bad input Base A");
+                                            System.out.println("Base A needs to be greater than 0!");
                                         }
                                         break;
                                     case 3:
@@ -160,26 +171,25 @@ public final class TempCheckSizeCheck {
                                                 System.out.println(PentAreaFLT);
                                             }
                                         } catch (NumberFormatException Error) {
-                                            System.out.println("Bad input side length");
+                                            System.out.println("Side length must be greater than 0!");
                                         }
                                         break;
                                     default:
-                                        System.out.println("Bad case");
+                                        System.out.println("Side length needs to be greater than 0!");
                                         break;
                                 }
-                            } catch(NumberFormatException Error) {
-                                System.out.println("Bad shape picker");
+                            } catch (NumberFormatException Error) {
+                                System.out.println("Invalid shape option selected.");
                             }
-
                             break;
                         default:
-                            System.out.println("Bad input case, ending program.");
+                            System.out.println("Invalid shape case selected!");
                             break;
                     }
                 } catch (NumberFormatException Error) {
                     System.out.println("Invalid program option!");
                 }
-                System.out.println("Enter anything to restart or Q to quit");
+                System.out.println("Press enter to restart or Q to quit");
                 String restart = in.nextLine();
                 if (restart.equalsIgnoreCase("q")) {
                     programState = false;
@@ -188,5 +198,7 @@ public final class TempCheckSizeCheck {
                 break;
             }
         }
+        // Closing the scanner
+        in.close();
     }
 }
