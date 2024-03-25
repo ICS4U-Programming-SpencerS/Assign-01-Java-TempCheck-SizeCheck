@@ -129,131 +129,134 @@ public final class TempCheckSizeCheck {
                             try {
                                 final Integer shapePickInt = Integer.parseInt(shapePickSTR);
 
-                                // cases
-                                switch (shapePickInt) {
-                                    case 1:
+                                if (shapePickInt < 1 || shapePickInt  > 3){
+                                    System.out.println("Input can't be greater than 3 or less than 1");
+                                } else {
+                                    // cases
+                                    switch (shapePickInt) {
+                                        case 1:
 
-                                        // lots of try catches but this code gets inputs and
-                                        // checks if it's valued number (eg above 0, not str, etc)
-                                        System.out.println("Enter the base of triangle(in cm)");
-                                        final String TriBaseSTR = in.nextLine();
-                                        try {
-                                            final Float TriBaseFLT = Float.parseFloat(TriBaseSTR);
-                                            if (TriBaseFLT > 0) {
-                                                System.out.println("Enter the height of the triangle(in cm)");
-                                                final String TriHeightSTR = in.nextLine();
-                                                try {
-                                                    final Float TriHeightFLT = Float.parseFloat(TriHeightSTR);
-                                                    if (TriHeightFLT > 0) {
+                                            // lots of try catches but this code gets inputs and
+                                            // checks if it's valued number (eg above 0, not str, etc)
+                                            System.out.println("Enter the base of triangle(in cm)");
+                                            final String TriBaseSTR = in.nextLine();
+                                            try {
+                                                final Float TriBaseFLT = Float.parseFloat(TriBaseSTR);
+                                                if (TriBaseFLT > 0) {
+                                                    System.out.println("Enter the height of the triangle(in cm)");
+                                                    final String TriHeightSTR = in.nextLine();
+                                                    try {
+                                                        final Float TriHeightFLT = Float.parseFloat(TriHeightSTR);
+                                                        if (TriHeightFLT > 0) {
 
-                                                        // function call
-                                                        Float roundTriArea = shapeTriangle(TriBaseFLT, TriHeightFLT);
+                                                            // function call
+                                                            Float roundTriArea = shapeTriangle(TriBaseFLT, TriHeightFLT);
 
-                                                        // output messages
-                                                        System.out.print(
-                                                                "The area of a triangle with a base of " + TriBaseFLT);
-                                                        System.out
-                                                                .print("cm and a height of " + TriHeightSTR + "cm is ");
-                                                        System.out.println(roundTriArea + "cm");
-                                                    } else {
-                                                        System.out.println("Height must be greater than 0!");
-                                                    }
-                                                } catch (NumberFormatException Error) {
-                                                    System.out.println("Invalid height inputted, value must be > 0");
-                                                    break;
-                                                }
-                                            } else {
-                                                System.out.println("Base must be greater than 0!");
-                                            }
-                                        } catch (NumberFormatException Error) {
-                                            System.out.println("Invalid base inputted, value must be > 0");
-                                        }
-                                        // break out of switch case
-                                        break;
-
-                                    // case for trapezoid
-                                    case 2:
-                                        // opening inputs, with try catches, valued if > 0 and number
-                                        System.out.println("Enter base A of the trapezoid(cm)");
-                                        final String TrapBaseAStr = in.nextLine();
-                                        try {
-                                            final Float TrapBaseAFlt = Float.parseFloat(TrapBaseAStr);
-                                            if (TrapBaseAFlt > 0) {
-                                                System.out.println("Enter base B of the trapezoid(cm)");
-                                                final String TrapBaseBStr = in.nextLine();
-                                                try {
-                                                    final Float TrapBaseBFlt = Float.parseFloat(TrapBaseBStr);
-                                                    if (TrapBaseBFlt > 0) {
-                                                        System.out.println("Enter the height of the trapezoid(cm)");
-                                                        final String TampHeightStr = in.nextLine();
-                                                        try {
-                                                            final Float TampHeightFlt = Float.parseFloat(TampHeightStr);
-                                                            if (TampHeightFlt > 0) {
-
-                                                                // calls function
-                                                                final Float roundTrapArea = shapeTrapezoid(TrapBaseAFlt,
-                                                                        TrapBaseBFlt, TampHeightFlt);
-
-                                                                // output message
-                                                                System.out.print("A trapezoid with the base of "
-                                                                        + TrapBaseAFlt + "cm and ");
-                                                                System.out.print(TrapBaseBFlt + "cm with a height of "
-                                                                        + TampHeightFlt);
-                                                                System.out.println("cm will have an area of "
-                                                                        + roundTrapArea + "cm");
-
-                                                                // else statements or catches for bad input
-                                                            } else {
-                                                                System.out
-                                                                        .println("Invalid height, height must be > 0");
-                                                            }
-
-                                                        } catch (NumberFormatException Error) {
-                                                            System.out.println("Height needs to greater than 0!");
+                                                            // output messages
+                                                            System.out.print(
+                                                                    "The area of a triangle with a base of " + TriBaseFLT);
+                                                            System.out
+                                                                    .print("cm and a height of " + TriHeightSTR + "cm is ");
+                                                            System.out.println(roundTriArea + "cm");
+                                                        } else {
+                                                            System.out.println("Height must be greater than 0!");
                                                         }
-                                                    } else {
-                                                        System.out.println("Base B must be greater than 0");
+                                                    } catch (NumberFormatException Error) {
+                                                        System.out.println("Invalid height inputted, value must be > 0");
+                                                        break;
                                                     }
-                                                } catch (NumberFormatException Error) {
-                                                    System.out.println("Base B needs to be greater than 0!");
-                                                    break;
+                                                } else {
+                                                    System.out.println("Base must be greater than 0!");
                                                 }
-                                            } else {
-                                                System.out.println("Base A must be greater than 0");
+                                            } catch (NumberFormatException Error) {
+                                                System.out.println("Invalid base inputted, value must be > 0");
                                             }
-                                        } catch (NumberFormatException Error) {
-                                            System.out.println("Base A needs to be greater than 0!");
-                                        }
-                                        // end case 2
-                                        break;
+                                            // break out of switch case
+                                            break;
 
-                                    // for pentagon inputs and output case
-                                    case 3:
+                                        // case for trapezoid
+                                        case 2:
+                                            // opening inputs, with try catches, valued if > 0 and number
+                                            System.out.println("Enter base A of the trapezoid(cm)");
+                                            final String TrapBaseAStr = in.nextLine();
+                                            try {
+                                                final Float TrapBaseAFlt = Float.parseFloat(TrapBaseAStr);
+                                                if (TrapBaseAFlt > 0) {
+                                                    System.out.println("Enter base B of the trapezoid(cm)");
+                                                    final String TrapBaseBStr = in.nextLine();
+                                                    try {
+                                                        final Float TrapBaseBFlt = Float.parseFloat(TrapBaseBStr);
+                                                        if (TrapBaseBFlt > 0) {
+                                                            System.out.println("Enter the height of the trapezoid(cm)");
+                                                            final String TampHeightStr = in.nextLine();
+                                                            try {
+                                                                final Float TampHeightFlt = Float.parseFloat(TampHeightStr);
+                                                                if (TampHeightFlt > 0) {
 
-                                        // same idea, more inputs, more try catches, more if above 0 statements
-                                        System.out.println("Enter the side length(cm)");
-                                        final String sideLengthSTR = in.nextLine();
-                                        try {
-                                            final float sideLengthFLT = Float.parseFloat(sideLengthSTR);
-                                            if (sideLengthFLT > 0) {
+                                                                    // calls function
+                                                                    final Float roundTrapArea = shapeTrapezoid(TrapBaseAFlt,
+                                                                            TrapBaseBFlt, TampHeightFlt);
 
-                                                // calls function and output
-                                                Float roundedArea = shapePentagon(sideLengthFLT);
-                                                System.out.println("A pentagon with a side length of " + sideLengthFLT
-                                                        + "cm will have an area of " + roundedArea + "cm");
+                                                                    // output message
+                                                                    System.out.print("A trapezoid with the base of "
+                                                                            + TrapBaseAFlt + "cm and ");
+                                                                    System.out.print(TrapBaseBFlt + "cm with a height of "
+                                                                            + TampHeightFlt);
+                                                                    System.out.println("cm will have an area of "
+                                                                            + roundTrapArea + "cm");
+
+                                                                    // else statements or catches for bad input
+                                                                } else {
+                                                                    System.out
+                                                                            .println("Invalid height, height must be > 0");
+                                                                }
+
+                                                            } catch (NumberFormatException Error) {
+                                                                System.out.println("Height needs to greater than 0!");
+                                                            }
+                                                        } else {
+                                                            System.out.println("Base B must be greater than 0");
+                                                        }
+                                                    } catch (NumberFormatException Error) {
+                                                        System.out.println("Base B needs to be greater than 0!");
+                                                        break;
+                                                    }
+                                                } else {
+                                                    System.out.println("Base A must be greater than 0");
+                                                }
+                                            } catch (NumberFormatException Error) {
+                                                System.out.println("Base A needs to be greater than 0!");
                                             }
-                                        } catch (NumberFormatException Error) {
-                                            System.out.println("Side length must be greater than 0!");
-                                        }
-                                        // break out of switch cases
-                                        break;
+                                            // end case 2
+                                            break;
 
-                                    // unused but default case
-                                    default:
-                                        System.out.println();
-                                        break;
+                                        // for pentagon inputs and output case
+                                        case 3:
+
+                                            // same idea, more inputs, more try catches, more if above 0 statements
+                                            System.out.println("Enter the side length(cm)");
+                                            final String sideLengthSTR = in.nextLine();
+                                            try {
+                                                final float sideLengthFLT = Float.parseFloat(sideLengthSTR);
+                                                if (sideLengthFLT > 0) {
+
+                                                    // calls function and output
+                                                    Float roundedArea = shapePentagon(sideLengthFLT);
+                                                    System.out.println("A pentagon with a side length of " + sideLengthFLT
+                                                            + "cm will have an area of " + roundedArea + "cm");
+                                                }
+                                            } catch (NumberFormatException Error) {
+                                                System.out.println("Side length must be greater than 0!");
+                                            }
+                                            // break out of switch cases
+                                            break;
+
+                                        // unused but default case
+                                        default:
+                                            System.out.println();
+                                            break;
+                                    }
                                 }
-
                                 // for bad shape inputs
                             } catch (NumberFormatException Error) {
                                 System.out.println("Invalid shape option selected.");
